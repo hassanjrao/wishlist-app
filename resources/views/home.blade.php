@@ -59,7 +59,7 @@
         <div class="row">
 
             @foreach ($wishLists as $wishList)
-                <div class="col-md-3 col-xl-3 mb-5">
+                <div class="col-sm-6 col-xs-6 col-md-6 col-xl-4 mb-5">
                     <div class="block block-rounded h-100 mb-0">
                         <div class="block-content p-1">
                             <div class="options-container" style="height: 200px; width:100%">

@@ -22,7 +22,7 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $request->validate([
-            'month' => 'nullable|date',
+            'month' => 'nullable|numeric',
             'age' => 'nullable|numeric',
         ]);
 

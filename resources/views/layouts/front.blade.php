@@ -263,7 +263,7 @@
 
 
     <script src="{{ asset('js/app.js') }}"></script>
-    {{-- <script src="{{ asset('js/oneui.app.js') }}"></script> --}}
+    <script src="{{ asset('js/oneui.app.js') }}"></script>
 
 
     <!-- Page JS Plugins -->
