@@ -25,7 +25,7 @@
                     <div class="alert alert-danger">
                         Your income certificate is expired. Please upload a new one.
                     </div>
-             
+
                 @endif
             </div>
         </div>
@@ -47,7 +47,7 @@
                         <div class="col-lg-12 ">
 
                             <div class="row mb-4">
-                                <div class="col-4">
+                                <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
                                     <label class="form-label" for="label">Name</label>
                                     <input required type="text" value="{{ $user->name }}" class="form-control"
                                         id="name" name="name">
@@ -57,7 +57,7 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <div class="col-4">
+                                <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
                                     <label class="form-label" for="label">Email</label>
                                     <input required type="text" value="{{ $user->email }}" class="form-control"
                                         id="email" name="email">
@@ -68,7 +68,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="col-4">
+                                <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
                                     <label class="form-label" for="label">Password</label>
                                     <input type="password" class="form-control" id="password" name="password">
                                 </div>
@@ -77,7 +77,7 @@
 
                             <div class="row mb-4">
 
-                                <div class="col-4">
+                                <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
                                     <label class="form-label" for="label">Income</label>
                                     <input required type="number" step=".01" value="{{ $user->income }}"
                                         class="form-control" id="income" name="income">
@@ -88,7 +88,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="col-4">
+                                <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
                                     <label class="form-label" for="label">Income Certificate</label>
                                     @php
                                         $required = true;

@@ -123,6 +123,7 @@
                   placeholder="image"
                   @change="wishList.image = $event.target.files[0]"
                 />
+                <span>Image is optional</span>
 
                 <span class="text-danger" role="alert">
                   <strong>{{ validationErrors.image }}</strong>

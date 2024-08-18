@@ -98,6 +98,11 @@
                             <span class="d-none d-sm-inline-block ms-1">Login</span>
                         </a>
 
+                        <a href="{{ route('register') }}" class="btn btn-lg btn-alt-secondary">
+                            <i class="fa fa-fw fa-user-plus"></i>
+                            <span class="d-none d-sm-inline-block ms-1">Register</span>
+                        </a>
+
                     @endguest
                     @auth
 
@@ -127,7 +132,7 @@
 
                                     @role('user')
                                         <a class="dropdown-item d-flex align-items-center justify-content-between"
-                                            href="{{ route('admin.users.index') }}">
+                                            href="{{ route('user.profile.index') }}">
                                             <span class="fs-sm fw-medium">Profile</span>
 
                                         </a>
@@ -199,6 +204,15 @@
                         <!-- Main Navigation -->
                         <div id="main-navigation" class="d-none d-lg-block mt-2 mt-lg-0">
                             <ul class="nav-main nav-main-dark nav-main-horizontal nav-main-hover">
+
+                                <li class="nav-main-item">
+                                    <a class="nav-main-link {{ request()->is('/') ? 'active' : '' }}"
+                                        href="{{ route('home') }}">
+                                        <i class="nav-main-link-icon si si-home"></i>
+                                        <span class="nav-main-link-name">Home</span>
+                                    </a>
+                                </li>
+
                                 <li class="nav-main-item">
                                     <a class="nav-main-link {{ request()->is('user/wishlist/create') ? 'active' : '' }}"
                                         href="{{ route('user.wishlist.create') }}">
@@ -262,8 +276,9 @@
         webpack is putting everything together at -->
 
 
-    <script src="{{ asset('js/app.js') }}"></script>
+
     <script src="{{ asset('js/oneui.app.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 
 
     <!-- Page JS Plugins -->
