@@ -15,6 +15,9 @@ class AdminUserController extends Controller
     public function index()
     {
         $users=User::latest()
+        ->whereHas('roles',function($q){
+            $q->where('name','user');
+        })
         ->with(['wishLists','incomeCertificates'])
         ->get();
 
