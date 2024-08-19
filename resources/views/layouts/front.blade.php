@@ -9,10 +9,14 @@
 
 
     <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
-    <link rel="shortcut icon" href="{{ asset('media/favicons/favicon.png') }}">
-    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('media/favicons/favicon-192x192.png') }}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('media/favicons/apple-touch-icon-180x180.png') }}">
+    <link rel="shortcut icon" href="{{ asset('media/bdaylogo.webp') }}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('media/bdaylogo.webp') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('media/bdaylogo.webp') }}">
     <!-- END Icons -->
+
+    <link rel="stylesheet" href="{{  asset('js/plugins/slick-carousel/slick.css')}}">
+    <link rel="stylesheet" href="{{  asset('js/plugins/slick-carousel/slick-theme.css')}}">
+
 
     <!-- Stylesheets -->
     <!-- Fonts and OneUI framework -->
@@ -75,12 +79,13 @@
         <!-- Header -->
         <header id="page-header">
             <!-- Header Content -->
-            <div class="content-header">
+            <div class="content-header" style="height: 5.5rem">
                 <!-- Left Section -->
                 <div class="d-flex align-items-center">
                     <!-- Logo -->
-                    <a class="fw-semibold fs-5 tracking-wider text-dual me-3"
-                        href="/">{{ config('app.name') }}</a>
+                    <a class="fw-semibold " href="/">
+                        <img src="{{ asset('media/bdaylogo.webp') }}" alt="" style="width: 80px;">
+                    </a>
                     <!-- END Logo -->
 
 
@@ -91,14 +96,19 @@
                 <div class="d-flex align-items-center">
                     <!-- Open Search Section (visible on smaller screens) -->
 
+                    <a href="{{ route('login') }}" class="btn btn-lg btn-alt-secondary" style="margin-right: 20px !important">
+                        <i class="fa fa-fw fa-heart"></i>
+                        <span class="d-none d-sm-inline-block ms-1">WishLists</span>
+                    </a>
+
                     @guest
 
-                        <a href="{{ route('login') }}" class="btn btn-lg btn-alt-secondary">
+                        <a href="{{ route('login') }}" class="btn btn-lg btn-alt-secondary" style="margin-right: 20px !important">
                             <i class="fa fa-fw fa-sign-in-alt"></i>
                             <span class="d-none d-sm-inline-block ms-1">Login</span>
                         </a>
 
-                        <a href="{{ route('register') }}" class="btn btn-lg btn-alt-secondary">
+                        <a href="{{ route('register') }}" class="btn btn-lg btn-alt-secondary" style="margin-right: 20px !important">
                             <i class="fa fa-fw fa-user-plus"></i>
                             <span class="d-none d-sm-inline-block ms-1">Register</span>
                         </a>
@@ -122,7 +132,6 @@
                                 <div class="p-2">
 
                                     @role('admin')
-
                                         <a class="dropdown-item d-flex align-items-center justify-content-between"
                                             href="{{ route('admin.dashboard.index') }}">
                                             <span class="fs-sm fw-medium">Admin Panel</span>
@@ -185,64 +194,78 @@
 
             @auth
 
-            @role('user')
+                @role('user')
+                    <div class="bg-primary-darker">
+                        <div class="content py-3">
+                            <!-- Toggle Main Navigation -->
+                            <div class="d-lg-none">
+                                <!-- Class Toggle, functionality initialized in Helpers.oneToggleClass() -->
+                                <button type="button"
+                                    class="btn w-100 btn-alt-secondary d-flex justify-content-between align-items-center"
+                                    data-toggle="class-toggle" data-target="#main-navigation" data-class="d-none">
+                                    Menu
+                                    <i class="fa fa-bars"></i>
+                                </button>
+                            </div>
+                            <!-- END Toggle Main Navigation -->
 
-                <div class="bg-primary-darker">
-                    <div class="content py-3">
-                        <!-- Toggle Main Navigation -->
-                        <div class="d-lg-none">
-                            <!-- Class Toggle, functionality initialized in Helpers.oneToggleClass() -->
-                            <button type="button"
-                                class="btn w-100 btn-alt-secondary d-flex justify-content-between align-items-center"
-                                data-toggle="class-toggle" data-target="#main-navigation" data-class="d-none">
-                                Menu
-                                <i class="fa fa-bars"></i>
-                            </button>
-                        </div>
-                        <!-- END Toggle Main Navigation -->
+                            <!-- Main Navigation -->
+                            <div id="main-navigation" class="d-none d-lg-block mt-2 mt-lg-0">
+                                <ul class="nav-main nav-main-dark nav-main-horizontal nav-main-hover">
 
-                        <!-- Main Navigation -->
-                        <div id="main-navigation" class="d-none d-lg-block mt-2 mt-lg-0">
-                            <ul class="nav-main nav-main-dark nav-main-horizontal nav-main-hover">
+                                    <li class="nav-main-item">
+                                        <a class="nav-main-link {{ request()->is('/') ? 'active' : '' }}"
+                                            href="{{ route('home') }}">
+                                            <i class="nav-main-link-icon si si-home"></i>
+                                            <span class="nav-main-link-name">Home</span>
+                                        </a>
+                                    </li>
 
-                                <li class="nav-main-item">
-                                    <a class="nav-main-link {{ request()->is('/') ? 'active' : '' }}"
-                                        href="{{ route('home') }}">
-                                        <i class="nav-main-link-icon si si-home"></i>
-                                        <span class="nav-main-link-name">Home</span>
-                                    </a>
-                                </li>
+                                    <li class="nav-main-item">
+                                        <a class="nav-main-link {{ request()->is('user/wishlist/create') ? 'active' : '' }}"
+                                            href="{{ route('user.wishlist.create') }}">
+                                            <i class="nav-main-link-icon si si-heart"></i>
+                                            <span class="nav-main-link-name">Your WishLists</span>
+                                        </a>
+                                    </li>
 
-                                <li class="nav-main-item">
-                                    <a class="nav-main-link {{ request()->is('user/wishlist/create') ? 'active' : '' }}"
-                                        href="{{ route('user.wishlist.create') }}">
-                                        <i class="nav-main-link-icon si si-heart"></i>
-                                        <span class="nav-main-link-name">Your WishLists</span>
-                                    </a>
-                                </li>
-
-                                <li class="nav-main-item">
-                                    <a class="nav-main-link {{ request()->is('user/profile') ? 'active' : '' }}"
-                                        href="{{ route('user.profile.index') }}">
-                                        <i class="nav-main-link-icon si si-user"></i>
-                                        <span class="nav-main-link-name">Profile</span>
-                                    </a>
-                                </li>
-                                {{-- <li class="nav-main-item">
+                                    <li class="nav-main-item">
+                                        <a class="nav-main-link {{ request()->is('user/profile') ? 'active' : '' }}"
+                                            href="{{ route('user.profile.index') }}">
+                                            <i class="nav-main-link-icon si si-user"></i>
+                                            <span class="nav-main-link-name">Profile</span>
+                                        </a>
+                                    </li>
+                                    {{-- <li class="nav-main-item">
                                 <a class="nav-main-link" href="bd_dashboard.html">
                                     <i class="nav-main-link-icon si si-compass"></i>
                                     <span class="nav-main-link-name"></span>
                                 </a>
                             </li> --}}
-                            </ul>
+                                </ul>
+                            </div>
+                            <!-- END Main Navigation -->
                         </div>
-                        <!-- END Main Navigation -->
                     </div>
-                </div>
-
-            @endrole
+                @endrole
 
             @endauth
+
+            <div class="bg-image"
+                style="background-image: url('{{ asset('media/photos/cover.jpg') }}'); height: 400px; background-position: 0% 80%;">
+                <div class="bg-primary-dark-op d-flex align-items-center"
+                    style='height:inherit; background-color: rgba(96, 85, 99, 0.5) !important'>
+                    <div class="content content-full">
+                        <div class="py-3 text-center">
+
+                            <h2 class="h3 fw-medium text-white mb-0">
+                                No child should go without a birthday gift here at birthday bonanza you can browse wish
+                                lists for verified low income children and buy a gift their family is wishing for.
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- END Navigation -->
             <!-- Page Content -->
@@ -254,7 +277,7 @@
         <!-- END Main Container -->
 
         <!-- Footer -->
-        <footer id="page-footer" class="bg-body-extra-light">
+        <footer id="page-footer" class="bg-body-light">
             <div class="content py-3">
                 <div class="row fs-sm">
 
@@ -280,6 +303,12 @@
     <script src="{{ asset('js/oneui.app.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
 
+
+    <script src="{{  asset('js/lib/jquery.min.js')}}"></script>
+    <script src="{{  asset('js/plugins/slick-carousel/slick.min.js')}}"></script>
+
+
+    <script>One.helpersOnLoad(['jq-slick']);</script>
 
     <!-- Page JS Plugins -->
     {{-- <script src="{{ asset('js/plugins/chart.js/Chart.js') }}"></script>
