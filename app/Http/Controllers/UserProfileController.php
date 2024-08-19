@@ -76,6 +76,7 @@ class UserProfileController extends Controller
             'email' => 'required|email|unique:users,email,' . auth()->id(),
             'password' => 'nullable|min:6',
             'income' => 'required|numeric',
+            'state' => 'required',
         ]);
 
         $user = auth()->user();
@@ -84,6 +85,7 @@ class UserProfileController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'income' => $request->income,
+            'state' => $request->state,
         ]);
 
         if ($request->password) {

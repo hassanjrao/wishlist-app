@@ -32,6 +32,7 @@ Auth::routes([
 // Example Routes
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('wishlists', [HomeController::class, 'wishlists'])->name('wishlists');
 
 Route::post('user-register/add-wishlist', [UserRegisterController::class, 'addWishlist'])->name('user-register.add-wishlist');
 Route::resource('user-register', UserRegisterController::class)->only(['create', 'store']);

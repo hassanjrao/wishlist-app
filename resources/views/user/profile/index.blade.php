@@ -78,6 +78,17 @@
                             <div class="row mb-4">
 
                                 <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+                                    <label class="form-label" for="label">State</label>
+                                    <input required type="text" value="{{ $user->state }}"
+                                        class="form-control" id="state" name="state">
+                                    @error('state')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+
+                                <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
                                     <label class="form-label" for="label">Income</label>
                                     <input required type="number" step=".01" value="{{ $user->income }}"
                                         class="form-control" id="income" name="income">

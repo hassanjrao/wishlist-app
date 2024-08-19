@@ -2088,6 +2088,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         id: null,
         name: "",
         email: "",
+        state: "",
         password: "",
         income: "",
         income_certificate: ""
@@ -2190,6 +2191,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       if (!this.user.email) {
         this.validationErrors.email = "Email is required";
       }
+      if (!this.user.state) {
+        this.validationErrors.state = "State is required";
+      }
       if (!this.user.password) {
         this.validationErrors.password = "Password is required";
       }
@@ -2205,7 +2209,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       if (!this.user.income_certificate) {
         this.validationErrors.income_certificate = "Income certificate is required";
       }
-      if (this.validationErrors.name || this.validationErrors.email || this.validationErrors.password || this.validationErrors.income || this.validationErrors.income_certificate) {
+      if (this.validationErrors.name || this.validationErrors.email || this.validationErrors.state || this.validationErrors.password || this.validationErrors.income || this.validationErrors.income_certificate) {
         return false;
       }
       return true;
@@ -2222,10 +2226,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               formData = new FormData();
               formData.append("name", _this2.user.name);
               formData.append("email", _this2.user.email);
+              formData.append("state", _this2.user.state);
               formData.append("password", _this2.user.password);
               formData.append("income", _this2.user.income);
               formData.append("income_certificate", _this2.user.income_certificate);
-              _context.next = 10;
+              _context.next = 11;
               return axios.post("user-register", formData, {
                 headers: {
                   "Content-Type": "multipart/form-data"
@@ -2244,6 +2249,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 _this2.validationErrors = {
                   name: errors.name ? errors.name.join(", ") : "",
                   email: errors.email ? errors.email.join(", ") : "",
+                  state: errors.state ? errors.state.join(", ") : "",
                   password: errors.password ? errors.password.join(", ") : "",
                   income: errors.income ? errors.income.join(", ") : "",
                   income_certificate: errors.income_certificate ? errors.income_certificate.join(", ") : ""
@@ -2251,9 +2257,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 _this2.loading = false;
                 return false;
               });
-            case 10:
-              return _context.abrupt("return", _context.sent);
             case 11:
+              return _context.abrupt("return", _context.sent);
+            case 12:
             case "end":
               return _context.stop();
           }
@@ -2581,6 +2587,41 @@ var render = function render() {
   }, [_c("label", {
     staticClass: "form-label",
     attrs: {
+      "for": "state"
+    }
+  }, [_vm._v("State")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.user.state,
+      expression: "user.state"
+    }],
+    staticClass: "form-control form-control-lg",
+    attrs: {
+      required: "",
+      type: "state",
+      id: "state",
+      placeholder: "State"
+    },
+    domProps: {
+      value: _vm.user.state
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.user, "state", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _c("span", {
+    staticClass: "text-danger",
+    attrs: {
+      role: "alert"
+    }
+  }, [_c("strong", [_vm._v(_vm._s(_vm.validationErrors.state))])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-6"
+  }, [_c("label", {
+    staticClass: "form-label",
+    attrs: {
       "for": "password"
     }
   }, [_vm._v("Password")]), _vm._v(" "), _c("input", {
@@ -2611,7 +2652,9 @@ var render = function render() {
     attrs: {
       role: "alert"
     }
-  }, [_c("strong", [_vm._v(_vm._s(_vm.validationErrors.password))])])]), _vm._v(" "), _c("div", {
+  }, [_c("strong", [_vm._v(_vm._s(_vm.validationErrors.password))])])])]), _vm._v(" "), _c("div", {
+    staticClass: "row mb-4"
+  }, [_c("div", {
     staticClass: "col-lg-6"
   }, [_c("label", {
     staticClass: "form-label",
@@ -2647,10 +2690,8 @@ var render = function render() {
     attrs: {
       role: "alert"
     }
-  }, [_c("strong", [_vm._v(_vm._s(_vm.validationErrors.income))])])])]), _vm._v(" "), _c("div", {
-    staticClass: "row mb-4"
-  }, [_c("div", {
-    staticClass: "col-lg-12"
+  }, [_c("strong", [_vm._v(_vm._s(_vm.validationErrors.income))])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-6"
   }, [_c("label", {
     staticClass: "form-label",
     attrs: {
@@ -2958,9 +2999,23 @@ var staticRenderFns = [function () {
     _c = _vm._self._c;
   return _c("div", {
     staticClass: "col-lg-12"
-  }, [_c("div", [_c("p", {}, [_vm._v("\n                      Your income should be in following range; We will verify income levels based\n                      on tax returns and verify kids by birth certificates\n                  ")]), _vm._v(" "), _c("div", {
+  }, [_c("div", [_c("p", {}, [_vm._v("\n                Your income should be in following range; We will verify income levels\n                based on tax returns and verify kids by birth certificates\n              ")]), _vm._v(" "), _c("div", {
     staticClass: "d-flex justify-content-between w-100 align-items-end"
-  }, [_c("ul", {}, [_c("li", [_vm._v("$25,820 1 kid")]), _vm._v(" "), _c("li", [_vm._v("$31,200 2 kid")]), _vm._v(" "), _c("li", [_vm._v("$36,580 3 kid")]), _vm._v(" "), _c("li", [_vm._v("$41,960 4 kid")]), _vm._v(" "), _c("li", [_vm._v("$47,340 5 kid")]), _vm._v(" "), _c("li", [_vm._v("$52,720 6 kid")])])])])]);
+  }, [_c("ul", {
+    staticClass: "list-inline-with-bullets"
+  }, [_c("li", {
+    staticClass: "list-inline-item"
+  }, [_vm._v("$25,820 1 kid")]), _vm._v(" "), _c("li", {
+    staticClass: "list-inline-item"
+  }, [_vm._v("$31,200 2 kid")]), _vm._v(" "), _c("li", {
+    staticClass: "list-inline-item"
+  }, [_vm._v("$36,580 3 kid")]), _vm._v(" "), _c("li", {
+    staticClass: "list-inline-item"
+  }, [_vm._v("$41,960 4 kid")]), _vm._v(" "), _c("li", {
+    staticClass: "list-inline-item"
+  }, [_vm._v("$47,340 5 kid")]), _vm._v(" "), _c("li", {
+    staticClass: "list-inline-item"
+  }, [_vm._v("$52,720 6 kid")])])])])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;

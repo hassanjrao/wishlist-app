@@ -23,9 +23,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
     <link rel="stylesheet" id="css-main" href="{{ asset('css/oneui.css') }}">
 
-    <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
-    <!-- <link rel="stylesheet" id="css-theme" href="{{ asset('css/themes/amethyst.min.css') }}"> -->
-    <!-- END Stylesheets -->
+
+    @yield('styles')
+
     @livewireStyles
 
 </head>
@@ -96,9 +96,19 @@
                 <div class="d-flex align-items-center">
                     <!-- Open Search Section (visible on smaller screens) -->
 
-                    <a href="{{ route('login') }}" class="btn btn-lg btn-alt-secondary" style="margin-right: 20px !important">
+                    <a href="{{ route('home') }}" class="btn btn-lg btn-alt-secondary" style="margin-right: 20px !important">
+                        <i class="fa fa-fw fa-home"></i>
+                        <span class="d-none d-sm-inline-block ms-1">Home</span>
+                    </a>
+
+                    <a href="{{ route('wishlists') }}" class="btn btn-lg btn-alt-secondary" style="margin-right: 20px !important">
                         <i class="fa fa-fw fa-heart"></i>
                         <span class="d-none d-sm-inline-block ms-1">WishLists</span>
+                    </a>
+
+                    <a href="{{ request()->is('/') ? '#faqs' : route('home') . '#faqs' }}" class="btn btn-lg btn-alt-secondary" style="margin-right: 20px !important">
+                        <i class="fa fa-fw fa-question-circle"></i>
+                        <span class="d-none d-sm-inline-block ms-1">FAQs</span>
                     </a>
 
                     @guest
@@ -259,7 +269,7 @@
                         <div class="py-3 text-center">
 
                             <h2 class="h3 fw-medium text-white mb-0">
-                                No child should go without a birthday gift here at birthday bonanza you can browse wish
+                                No child should go without a birthday gift here at <span class="text-capitalize"><strong>birthday bonanza</strong></span> you can browse wish
                                 lists for verified low income children and buy a gift their family is wishing for.
                             </h2>
                         </div>

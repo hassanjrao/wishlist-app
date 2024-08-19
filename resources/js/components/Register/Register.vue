@@ -63,6 +63,20 @@
 
           <div class="row mb-4">
             <div class="col-lg-6">
+              <label for="state" class="form-label">State</label>
+              <input
+                required
+                type="state"
+                class="form-control form-control-lg"
+                id="state"
+                placeholder="State"
+                v-model="user.state"
+              />
+              <span class="text-danger" role="alert">
+                <strong>{{ validationErrors.state }}</strong>
+              </span>
+            </div>
+            <div class="col-lg-6">
               <label for="password" class="form-label">Password</label>
               <input
                 required
@@ -76,7 +90,9 @@
                 <strong>{{ validationErrors.password }}</strong>
               </span>
             </div>
+          </div>
 
+          <div class="row mb-4">
             <div class="col-lg-6">
               <label for="income" class="form-label">Income</label>
               <input
@@ -92,10 +108,7 @@
                 <strong>{{ validationErrors.income }}</strong>
               </span>
             </div>
-          </div>
-
-          <div class="row mb-4">
-            <div class="col-lg-12">
+            <div class="col-lg-6">
               <label for="password" class="form-label">Income Certificate</label>
               <input
                 required
@@ -115,24 +128,22 @@
         <div v-if="step == 2">
           <div>
             <div class="col-lg-12">
-                <div>
-                    <p class="">
-                        Your income should be in following range; We will verify income levels based
-                        on tax returns and verify kids by birth certificates
-                    </p>
-                    <div class="d-flex justify-content-between w-100 align-items-end">
-                        <ul class="">
-                            <li>$25,820 1 kid</li>
-                            <li>$31,200 2 kid</li>
-                            <li>$36,580 3 kid</li>
-                            <li>$41,960 4 kid</li>
-                            <li>$47,340 5 kid</li>
-                            <li>$52,720 6 kid</li>
-                        </ul>
-
-
-                    </div>
+              <div>
+                <p class="">
+                  Your income should be in following range; We will verify income levels
+                  based on tax returns and verify kids by birth certificates
+                </p>
+                <div class="d-flex justify-content-between w-100 align-items-end">
+                  <ul class="list-inline-with-bullets">
+                    <li class="list-inline-item">$25,820 1 kid</li>
+                    <li class="list-inline-item">$31,200 2 kid</li>
+                    <li class="list-inline-item">$36,580 3 kid</li>
+                    <li class="list-inline-item">$41,960 4 kid</li>
+                    <li class="list-inline-item">$47,340 5 kid</li>
+                    <li class="list-inline-item">$52,720 6 kid</li>
+                  </ul>
                 </div>
+              </div>
             </div>
             <div class="row mb-4 align-items-center">
               <div class="col-lg-2">
@@ -226,7 +237,6 @@
                           @change="wishList.image = $event.target.files[0]"
                         />
                         <span>Image is optional</span>
-
 
                         <span class="text-danger" role="alert">
                           <strong>{{ validationErrors.image }}</strong>
@@ -340,6 +350,7 @@ export default {
         id: null,
         name: "",
         email: "",
+        state: "",
         password: "",
         income: "",
         income_certificate: "",
@@ -469,6 +480,10 @@ export default {
         this.validationErrors.email = "Email is required";
       }
 
+      if(!this.user.state) {
+        this.validationErrors.state = "State is required";
+      }
+
       if (!this.user.password) {
         this.validationErrors.password = "Password is required";
       }
@@ -492,6 +507,7 @@ export default {
       if (
         this.validationErrors.name ||
         this.validationErrors.email ||
+        this.validationErrors.state ||
         this.validationErrors.password ||
         this.validationErrors.income ||
         this.validationErrors.income_certificate
@@ -510,6 +526,7 @@ export default {
       let formData = new FormData();
       formData.append("name", this.user.name);
       formData.append("email", this.user.email);
+        formData.append("state", this.user.state);
       formData.append("password", this.user.password);
       formData.append("income", this.user.income);
       formData.append("income_certificate", this.user.income_certificate);
@@ -542,6 +559,7 @@ export default {
           this.validationErrors = {
             name: errors.name ? errors.name.join(", ") : "",
             email: errors.email ? errors.email.join(", ") : "",
+            state: errors.state ? errors.state.join(", ") : "",
             password: errors.password ? errors.password.join(", ") : "",
             income: errors.income ? errors.income.join(", ") : "",
             income_certificate: errors.income_certificate
