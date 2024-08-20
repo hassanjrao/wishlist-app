@@ -33,8 +33,8 @@
                                 <th>Email</th>
                                 <th>Approved</th>
                                 <th>Income</th>
-                                <th>Income Certificate</th>
-                                <th>Income Certificate Expired</th>
+                                <th>Tax Return Certificate</th>
+                                <th>Tax Return Certificate Expired</th>
                                 <th>Total WishLists</th>
                                 <th>Created At</th>
                                 <th>Updated At</th>

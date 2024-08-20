@@ -105,7 +105,7 @@
                                 </div>
 
                                 <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
-                                    <label class="form-label" for="label">Income Certificate</label>
+                                    <label class="form-label" for="label">Tax Return Certificate</label>
                                     @php
                                         $required = true;
                                     @endphp
@@ -117,9 +117,9 @@
 
 
 
-                                    <input type="file" class="form-control" id="income_certificate"
-                                        name="income_certificate">
-                                    @error('income_certificate')
+                                    <input type="file" class="form-control" id="tax_return_certificate"
+                                        name="tax_return_certificate">
+                                    @error('tax_return_certificate')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>

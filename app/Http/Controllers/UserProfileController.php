@@ -96,11 +96,11 @@ class UserProfileController extends Controller
             ]);
         }
 
-        if ($request->hasFile('income_certificate')) {
+        if ($request->hasFile('tax_return_certificate')) {
 
             UserIncomeCertificate::create([
                 'user_id' => $user->id,
-                'path' => $request->file('income_certificate')->store('income_certificates'),
+                'path' => $request->file('tax_return_certificate')->store('income_certificates'),
             ]);
         }
 

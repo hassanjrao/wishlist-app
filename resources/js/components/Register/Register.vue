@@ -107,7 +107,7 @@
               </span>
             </div>
             <div class="col-lg-6">
-              <label for="password" class="form-label">Income Certificate</label>
+              <label for="password" class="form-label">Tax Return Certificate</label>
               <input
                 required
                 type="file"
@@ -506,7 +506,7 @@ export default {
       }
 
       if (!this.user.income_certificate) {
-        this.validationErrors.income_certificate = "Income certificate is required";
+        this.validationErrors.income_certificate = "Tax Return Certificate is required";
       }
 
       if (
