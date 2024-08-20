@@ -321,7 +321,7 @@
         </div>
 
         <p class="text-center mt-3">
-          <a class="fw-medium" href="">Already have an account? Login</a>
+          <a class="fw-medium" href="/login">Already have an account? Login</a>
         </p>
       </div>
     </div>

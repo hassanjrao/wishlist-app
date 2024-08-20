@@ -70,7 +70,7 @@
                 <div class="js-slider" data-autoplay="true" data-dots="true" data-arrows="true" data-slides-to-show="3">
 
                     @foreach ($wishLists as $wishList)
-                        <div class="col-sm-6 col-xs-6 col-md-6 col-xl-4 ml-5" style="margin-right: 30px !important">
+                        <div class="col-sm-6 col-xs-6 col-md-3 col-xl-3 ml-5" style="margin-right: 30px !important">
                             <div class="block block-rounded h-100 mb-0">
                                 <div class="block-content p-1">
                                     <div class="options-container" style="height: 200px; width:100%">
