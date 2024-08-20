@@ -71,7 +71,7 @@ class HomeController extends Controller
             });
         })
         ->orderBy('date_of_birth', 'asc')
-        ->paginate(2)
+        ->paginate(20)
         ->withQueryString();
 
 
