@@ -83,7 +83,7 @@
                                         @endif
                                         <div class="options-overlay bg-black-75">
                                             <div class="options-overlay-content">
-                                                <a class="btn btn-sm btn-alt-secondary" target='_blank'
+                                                <a class="btn btn-sm btn-alt-secondary" target='__blank'
                                                     href="{{ $wishList->wish_list_link }}">
                                                     View Wishlist
                                                     <i class="fa fa-link"></i>
