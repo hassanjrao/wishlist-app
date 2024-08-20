@@ -49,7 +49,7 @@ class HomeController extends Controller
     public function wishlists(Request $request)
     {
         $request->validate([
-            'month' => 'nullable|numeric',
+            'month' => 'nullable',
             'age' => 'nullable|numeric',
         ]);
 
