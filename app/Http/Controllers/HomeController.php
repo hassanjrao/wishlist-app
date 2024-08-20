@@ -67,7 +67,9 @@ class HomeController extends Controller
         })
         ->whereHas('user', function ($query) use ($state) {
             $query->where('is_approved', 1)
-            ->where('state_id', $state)
+            ->when($state, function ($query) use ($state) {
+                $query->where('state_id', $state);
+            })
             ->whereHas('latestIncomeCertificate', function ($query) {
                 // created_at should not older than 1 year
                 $query->where('created_at', '>=', now()->subYear());
