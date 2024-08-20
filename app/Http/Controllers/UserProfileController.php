@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\State;
 use App\Models\UserIncomeCertificate;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,8 @@ class UserProfileController extends Controller
     {
 
         $user = auth()->user();
-        return view('user.profile.index', compact('user'));
+        $states=State::all();
+        return view('user.profile.index', compact('user','states'));
     }
 
     /**
@@ -76,7 +78,7 @@ class UserProfileController extends Controller
             'email' => 'required|email|unique:users,email,' . auth()->id(),
             'password' => 'nullable|min:6',
             'income' => 'required|numeric',
-            'state' => 'required',
+            'state' => 'required|exists:states,id',
         ]);
 
         $user = auth()->user();
@@ -85,7 +87,7 @@ class UserProfileController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'income' => $request->income,
-            'state' => $request->state,
+            'state_id' => $request->state,
         ]);
 
         if ($request->password) {

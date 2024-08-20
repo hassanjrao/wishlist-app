@@ -64,14 +64,12 @@
           <div class="row mb-4">
             <div class="col-lg-6">
               <label for="state" class="form-label">State</label>
-              <input
-                required
-                type="state"
-                class="form-control form-control-lg"
-                id="state"
-                placeholder="State"
-                v-model="user.state"
-              />
+              <select id="state" v-model="user.state" class="form-select">
+                <option value="">Select State</option>
+                <option v-for="state in states" :key="state.id" :value="state.id">
+                  {{ state.name }}
+                </option>
+              </select>
               <span class="text-danger" role="alert">
                 <strong>{{ validationErrors.state }}</strong>
               </span>
@@ -332,6 +330,13 @@
 import WishList from "./WishList.vue";
 
 export default {
+  props: {
+    states: {
+      type: Array,
+      required: true,
+    },
+  },
+
   mounted() {
     console.log("Component mounted.");
   },
@@ -480,7 +485,7 @@ export default {
         this.validationErrors.email = "Email is required";
       }
 
-      if(!this.user.state) {
+      if (!this.user.state) {
         this.validationErrors.state = "State is required";
       }
 
@@ -526,7 +531,7 @@ export default {
       let formData = new FormData();
       formData.append("name", this.user.name);
       formData.append("email", this.user.email);
-        formData.append("state", this.user.state);
+      formData.append("state", this.user.state);
       formData.append("password", this.user.password);
       formData.append("income", this.user.income);
       formData.append("income_certificate", this.user.income_certificate);

@@ -43,7 +43,7 @@ class UserRegisterController extends Controller
             'email' => 'required|email|unique:users,email,' . $request->id,
             'password' => 'required|min:6',
             'income' => 'required|numeric',
-            'state' => 'required',
+            'state' => 'required|exists:states,id',
             'income_certificate' => 'required|file|max:10240',
         ], [
             'income_certificate.required' => 'The income certificate is required.',
@@ -58,7 +58,7 @@ class UserRegisterController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'income' => $request->income,
-            'state' => $request->state,
+            'state_id' => $request->state,
         ]);
 
         UserIncomeCertificate::create([

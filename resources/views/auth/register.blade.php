@@ -27,11 +27,14 @@
 @section('content')
 
 
+@php
+    $states=\App\Models\State::all();
+@endphp
     <div class="hero-static bg-body-extra-light py-5">
 
         <div class="p-4 w-100 flex-grow-1 d-flex align-items-center">
             <div class="w-100">
-                <register />
+                <register :states='{{ $states }}' />
             </div>
         </div>
 

@@ -21,7 +21,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'state',
+        'state_id',
         'password',
         'income',
         'is_approved',
@@ -66,6 +66,10 @@ class User extends Authenticatable
     public function isIncomeCertificateExpired(){
         // if the latest income certificate is 1 year old, then it is expired
         return $this->latestIncomeCertificate && $this->latestIncomeCertificate->created_at->diffInYears(now()) >= 1;
+    }
+
+    public function state(){
+        return $this->belongsTo(State::class)->withDefault();
     }
 
 }

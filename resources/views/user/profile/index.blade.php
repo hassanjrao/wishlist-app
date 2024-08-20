@@ -79,8 +79,13 @@
 
                                 <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
                                     <label class="form-label" for="label">State</label>
-                                    <input required type="text" value="{{ $user->state }}"
-                                        class="form-control" id="state" name="state">
+                                    <select required class="form-select" id="state" name="state">
+                                        <option value="">Select State</option>
+                                        @foreach ($states as $state)
+                                            <option value="{{ $state->id }}" @if ($user->state_id == $state->id) selected @endif>
+                                                {{ $state->name }}</option>
+                                        @endforeach
+                                    </select>
                                     @error('state')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

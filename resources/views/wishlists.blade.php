@@ -48,8 +48,13 @@
                     <div class="col-md-3 col-xl-3 mb-5">
                         <div class="form-group">
                             <label for="state">Filter By State</label>
-                            <input type="text" class="form-control" id="state" name="state" placeholder="State"
-                                value="{{ request()->state }}">
+                            <select required class="form-select" id="state" name="state">
+                                <option value="all">All</option>
+                                @foreach ($states as $state)
+                                    <option value="{{ $state->id }}" @if ($state->id == request()->state) selected @endif>
+                                        {{ $state->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
 
@@ -62,7 +67,7 @@
                         {{-- clear filter --}}
                         <div>
                             <label for=""></label>
-                            <a href="{{ route('home') }}" class="btn btn-danger">Clear Filter</a>
+                            <a href="{{ route('wishlists') }}" class="btn btn-danger">Clear Filters</a>
                         </div>
                     </div>
                 </div>
@@ -97,16 +102,17 @@
                                 </div>
                             </div>
                             <div class="block-content">
-                                <div class="mb-1 d-flex justify-content-between">
+                                <div class="mb-1 d-flex justify-content-between text-left">
 
                                     <p class="h6"><span>Name:</span><br>{{ $wishList->name }}</p>
 
                                     <p class="h6"><span>DOB:</span><br>{{ $wishList->date_of_birth }}</p>
                                 </div>
 
-                                <div class="mb-1 d-flex justify-content-between">
+                                <div class="mb-1 d-flex justify-content-between text-start">
 
                                     <p class="h6"><span>Age:</span>{{ $wishList->age }}</p>
+                                    <p class="h6"><span>State:</span><br>{{ $wishList->user->state->name }}</p>
 
                                 </div>
                                 <p class="fs-sm text-muted">
