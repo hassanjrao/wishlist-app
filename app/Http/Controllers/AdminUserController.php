@@ -91,9 +91,10 @@ class AdminUserController extends Controller
         $user=User::findorfail($id);
 
 
-        $user->wishLists()->delete();
-        $user->incomeCertificates()->delete();
-        $user->delete();
+        // hard delete
+        $user->wishLists()->forceDelete();
+        $user->incomeCertificates()->forceDelete();
+        $user->forceDelete();
 
         return redirect()->back()->withToastSuccess('User deleted successfully');
     }
