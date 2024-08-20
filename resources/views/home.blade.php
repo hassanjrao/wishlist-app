@@ -24,7 +24,7 @@
                     <div class="item item-rounded my-4 text-amethyst bg-amethyst-lighter">
                         <i class="fa fa-fw fa-2x fa-certificate"></i>
                     </div>
-                    <h4 class="mb-2">Upload your Income Certificate</h4>
+                    <h4 class="mb-2">Upload your Tax Return Certificate</h4>
 
                 </div>
 
