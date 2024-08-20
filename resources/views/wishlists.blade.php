@@ -112,7 +112,7 @@
                                 <div class="mb-1 d-flex justify-content-between text-start">
 
                                     <p class="h6"><span>Age:</span>{{ $wishList->age }}</p>
-                                    <p class="h6"><span>State:</span><br>{{ $wishList->user->state->name }}</p>
+                                    <p class="h6"><span>State:</span>{{ $wishList->user->state->name }}</p>
 
                                 </div>
                                 <p class="fs-sm text-muted">
