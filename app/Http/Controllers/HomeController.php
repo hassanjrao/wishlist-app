@@ -54,7 +54,7 @@ class HomeController extends Controller
         ]);
 
         // if month is null, then it will return the current month
-        $month = $request->month ?? date('m');
+        $month = $request->month ?? 'all';
 
         $age = $request->age;
 
