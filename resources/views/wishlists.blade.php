@@ -117,7 +117,9 @@
                     </div>
                 @endforeach
 
-                {{ $wishLists->links() }}
+                <div class="col-lg-12 d-flex justify-content-center">
+                    {{ $wishLists->links() }}
+                </div>
 
             </div>
 
