@@ -90,10 +90,6 @@
                                                 <i class="fa fa-link"></i>
                                             </a>
 
-                                            <a class="btn btn-sm btn-alt-secondary" href="be_pages_ecom_store_product.html">
-                                                View Details
-                                            </a>
-
 
                                         </div>
                                     </div>
