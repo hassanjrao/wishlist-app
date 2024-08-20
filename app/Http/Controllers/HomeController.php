@@ -58,7 +58,7 @@ class HomeController extends Controller
 
         $age = $request->age;
 
-        $wishLists = WishList::when($month, function ($query) use ($month) {
+        $wishLists = WishList::when($month && $month!='all', function ($query) use ($month) {
             return $query->whereMonth('date_of_birth', $month);
         })->when($age, function ($query) use ($age) {
             return $query->where('age', $age);

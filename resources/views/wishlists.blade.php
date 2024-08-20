@@ -20,6 +20,7 @@
                         <div class="form-group">
                             <label for="month">Filter By Month</label>
                             <select id="monthSelect" name="month" class="form-select">
+                                <option {{ $month == 'all' ? 'selected' : '' }} value="all">All</option>
                                 <option {{ $month == '01' ? 'selected' : '' }} value="01">January</option>
                                 <option {{ $month == '02' ? 'selected' : '' }} value="02">February</option>
                                 <option {{ $month == '03' ? 'selected' : '' }} value="03">March</option>
