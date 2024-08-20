@@ -71,7 +71,7 @@ class HomeController extends Controller
             });
         })
         ->orderBy('date_of_birth', 'asc')
-        ->get();
+        ->paginate(2);
 
 
         return view('wishlists', compact('wishLists', 'month', 'age'));

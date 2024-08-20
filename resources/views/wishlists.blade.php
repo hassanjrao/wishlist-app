@@ -117,6 +117,7 @@
                     </div>
                 @endforeach
 
+                {{ $wishLists->links() }}
 
             </div>
 
