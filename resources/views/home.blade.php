@@ -277,6 +277,19 @@
                     </div>
                 </div>
 
+                <div class="block block-rounded block-bordered overflow-hidden mb-1">
+                    <div class="block-header block-header-default" role="tab" id="faq7" data-bs-toggle="collapse" data-bs-parent="#faq7" href="#faq7_q2"
+                    aria-expanded="true" aria-controls="faq7_q2" style="cursor: pointer">
+                        <a> Do I have to verify each year my income</a>
+                    </div>
+                    <div id="faq7_q2" class="collapse" role="tabpanel" aria-labelledby="faq7" data-bs-parent="#faq7">
+                        <div class="block-content">
+
+                            <p>At the anniversary of your account approval you will have to submit a new tax return</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

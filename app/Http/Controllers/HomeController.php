@@ -39,7 +39,7 @@ class HomeController extends Controller
         ->whereHas('user', function ($query) {
             $query->where('is_approved', 1);
         })
-        ->orderBy('created_at', 'desc')
+        ->orderBy('date_of_birth', 'asc')
         ->get();
 
 
@@ -70,7 +70,7 @@ class HomeController extends Controller
                 $query->where('created_at', '>=', now()->subYear());
             });
         })
-        ->orderBy('created_at', 'desc')
+        ->orderBy('date_of_birth', 'asc')
         ->get();
 
 
