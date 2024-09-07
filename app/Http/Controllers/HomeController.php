@@ -85,4 +85,9 @@ class HomeController extends Controller
         return view('wishlists', compact('wishLists', 'month', 'age','states'));
     }
 
+    public function privacyPolicy()
+    {
+        return view('privacy-policy');
+    }
+
 }
