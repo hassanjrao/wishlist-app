@@ -107,6 +107,9 @@ class AdminUserController extends Controller
             'is_approved'=>1
         ]);
 
+        $user->incomeCertificates()->forceDelete();
+
+
         return redirect()->back()->withToastSuccess('User approved successfully');
     }
 

@@ -4,6 +4,9 @@
 
 @section('content')
     <!-- Hero -->
+
+    <div id="one-hero-after" class="bg-body-extra-light py-5">
+
     <div class="content content-boxed">
 
         <div class="hero-static">
@@ -25,6 +28,7 @@
             <wishlist />
 
         </div>
+    </div>
     </div>
     <!-- END Hero -->
 @endsection
