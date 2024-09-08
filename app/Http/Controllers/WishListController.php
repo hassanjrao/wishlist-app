@@ -60,6 +60,8 @@ class WishListController extends Controller
 
             $age = $wishListObj->calculateAge($wishList['dob']);
 
+            $wishList['gender']=strtolower($wishList['gender']);
+
 
             if (isset($wishList['id'])) {
                 $wishListDb = WishList::find($wishList['id']);

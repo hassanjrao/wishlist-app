@@ -16,7 +16,7 @@
                 <div class="row align-items-center">
 
 
-                    <div class="col-md-3 col-xl-3 mb-5">
+                    <div class="col-md-2 col-xl-2 mb-5">
                         <div class="form-group">
                             <label for="month">Filter By Month</label>
                             <select id="monthSelect" name="month" class="form-select">
@@ -37,7 +37,22 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3 col-xl-3 mb-5">
+                    <div class="col-md-2 col-xl-2 mb-5">
+                        <div class="form-group">
+                            <label for="gender">Filter By Gender</label>
+                            <select id="gender" name="gender" class="form-select">
+                                <option {{ $gender == 'all' ? 'selected' : '' }} value="all">All</option>
+                                @foreach ($genders as $key=>$value)
+                                    <option {{ $gender ==$key ? 'selected' : '' }} value="{{ $key }}">{{ $value }}</option>
+                                @endforeach
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-2 col-xl-2 mb-5">
                         <div class="form-group">
                             <label for="dob">Filter By Age</label>
                             <input type="number" class="form-control" id="age" name="age" placeholder="Age"
@@ -45,7 +60,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3 col-xl-3 mb-5">
+                    <div class="col-md-2 col-xl-2 mb-5">
                         <div class="form-group">
                             <label for="state">Filter By State</label>
                             <select required class="form-select" id="state" name="state">
@@ -113,6 +128,11 @@
 
                                     <p class="h6"><span>Age:</span> {{ $wishList->age }}</p>
                                     <p class="h6"><span>State:</span> {{ $wishList->user->state->name }}</p>
+
+                                </div>
+                                <div class="mb-1 d-flex justify-content-between text-start">
+
+                                    <p class="h6"><span>Gender:</span> {{ ucfirst($wishList->gender) }}</p>
 
                                 </div>
                                 <p class="fs-sm text-muted">

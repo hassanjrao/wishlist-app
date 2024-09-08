@@ -53,27 +53,33 @@ class HomeController extends Controller
             'month' => 'nullable',
             'age' => 'nullable|numeric',
             'state' => 'nullable',
+            'gender'=>'nullable'
         ]);
 
         // if month is null, then it will return the current month
         $month = $request->month ?? 'all';
         $age = $request->age;
         $state = $request->state;
+        $gender=$request->gender ?? 'all';
 
         $wishLists = WishList::when($month && $month!='all', function ($query) use ($month) {
             return $query->whereMonth('date_of_birth', $month);
         })->when($age, function ($query) use ($age) {
             return $query->where('age', $age);
         })
+        ->when($gender && $gender!='all', function ($query) use ($gender) {
+
+            return $query->where('gender', $gender);
+        })
         ->whereHas('user', function ($query) use ($state) {
-            $query->where('is_approved', 1)
-            ->when($state && $state!='all', function ($query) use ($state) {
+            // $query->where('is_approved', 1)
+            $query->when($state && $state!='all', function ($query) use ($state) {
                 $query->where('state_id', $state);
-            })
-            ->whereHas('latestIncomeCertificate', function ($query) {
-                // created_at should not older than 1 year
-                $query->where('created_at', '>=', now()->subYear());
             });
+            // ->whereHas('latestIncomeCertificate', function ($query) {
+                // created_at should not older than 1 year
+                // $query->where('created_at', '>=', now()->subYear());
+            // });
         })
         ->with(['user','user.state'])
         ->orderBy('date_of_birth', 'asc')
@@ -81,8 +87,9 @@ class HomeController extends Controller
         ->withQueryString();
 
         $states=State::all();
+        $genders=WishList::genders();
 
-        return view('wishlists', compact('wishLists', 'month', 'age','states'));
+        return view('wishlists', compact('wishLists', 'month', 'age','states','gender','genders'));
     }
 
     public function privacyPolicy()
