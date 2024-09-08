@@ -23,10 +23,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Auth::routes([
-    'verify' => false,
-    'reset' => false,
-]);
+Auth::routes(['verify' => true]);
+
 
 
 // Example Routes

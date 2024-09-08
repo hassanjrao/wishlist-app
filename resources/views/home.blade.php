@@ -16,9 +16,9 @@
                         <i class="fab fa-fw fa-2x fa-wpforms"></i>
                     </div>
                     <h4 class="mb-2">Enter your Information</h4>
-                    <p class="text-muted">
+                    {{-- <p class="text-muted">
                         Name, Email, Password
-                    </p>
+                    </p> --}}
                 </div>
                 <div class="col-6 col-md-4">
                     <div class="item item-rounded my-4 text-amethyst bg-amethyst-lighter">
@@ -32,7 +32,7 @@
                     <div class="item item-rounded my-4 text-amethyst bg-amethyst-lighter">
                         <i class="fa fa-solid fa-2x fa-heart"></i>
                     </div>
-                    <h4 class="mb-2">Submit WishLists</h4>
+                    <h4 class="mb-2">Submit Amazon WishLists</h4>
 
                 </div>
 

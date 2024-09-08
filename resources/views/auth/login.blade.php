@@ -17,11 +17,11 @@
                             <div class="block-options">
 
 
-                                {{-- @if (Route::has('password.request'))
+                                @if (Route::has('password.request'))
 
                                     <a class="btn-block-option fs-sm" href="{{ route('password.request') }}">Forgot
                                         Password?</a>
-                                @endif --}}
+                                @endif
                             </div>
                         </div>
                         <div class="block-content">
