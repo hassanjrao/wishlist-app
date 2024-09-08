@@ -66,16 +66,15 @@
                 </span>
               </div>
               <div class="col-lg-6">
-                <label for="dob" class="form-label">Date of Birth*</label>
-                <input
-                  required
-                  type="date"
-                  class="form-control form-control-lg"
-                  id="dob"
-                  v-model="wishList.dob"
-                />
+                <label for="name" class="form-label">Gender *</label>
+                <select required class="form-select" v-model="wishList.gender">
+                  <option value="">Select Gender</option>
+                  <option v-for="gender in genders" :key="gender" :value="gender">
+                    {{ gender }}
+                  </option>
+                </select>
                 <span class="text-danger" role="alert">
-                  <strong>{{ validationErrors.dob }}</strong>
+                  <strong>{{ validationErrors.gender }}</strong>
                 </span>
               </div>
             </div>
@@ -106,6 +105,19 @@
                 </span>
               </div> -->
               <div class="col-lg-6">
+                <label for="dob" class="form-label">Date of Birth*</label>
+                <input
+                  required
+                  type="date"
+                  class="form-control form-control-lg"
+                  id="dob"
+                  v-model="wishList.dob"
+                />
+                <span class="text-danger" role="alert">
+                  <strong>{{ validationErrors.dob }}</strong>
+                </span>
+              </div>
+              <div class="col-lg-6">
                 <label for="image" class="form-label"></label>
                 <a :href="wishList.image_url" v-if="wishList.image_url" target="_blank"
                   >Image</a
@@ -126,7 +138,10 @@
                   <strong>{{ validationErrors.image }}</strong>
                 </span>
               </div>
-              <div class="col-lg-6">
+            </div>
+
+            <div class="row mb-4">
+              <div class="col-lg-12">
                 <label for="url" class="form-label">WishList Link*</label>
                 <input
                   required
@@ -169,6 +184,12 @@
 
 <script>
 export default {
+  props: {
+    genders: {
+      required: true,
+    },
+  },
+
   mounted() {
     console.log("Component mounted.");
     this.getWishLists();
@@ -185,6 +206,7 @@ export default {
         image: "",
         wishListLink: "",
         about: "",
+        gender: "",
       },
       wishLists: [
         {
@@ -199,6 +221,7 @@ export default {
           //   birth_certificate_url: "",
           wishListLink: "",
           about: "",
+          gender: "",
         },
       ],
     };
@@ -230,6 +253,7 @@ export default {
         // birth_certificate: "",
         wishListLink: "",
         about: "",
+        gender: "",
       });
     },
 
@@ -243,6 +267,7 @@ export default {
         image: "",
         wishListLink: "",
         about: "",
+        gender:"",
       };
 
       console.log(this.wishLists);
@@ -257,7 +282,8 @@ export default {
           !wishList.dob ||
           //   (!wishList.birth_certificate_url && !wishList.birth_certificate) ||
           !wishList.wishListLink ||
-          !wishList.about
+          !wishList.about ||
+          !wishList.gender
         ) {
           errorMsg = "Fields with * are required";
           valid = false;
@@ -302,6 +328,7 @@ export default {
         formData.append(`wishLists[${index}][dob]`, wishList.dob);
         formData.append(`wishLists[${index}][wishListLink]`, wishList.wishListLink);
         formData.append(`wishLists[${index}][about]`, wishList.about);
+        formData.append(`wishLists[${index}][gender]`, wishList.gender);
 
         if (wishList.image) {
           formData.append(`wishLists[${index}][image]`, wishList.image);

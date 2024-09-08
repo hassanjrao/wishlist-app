@@ -47,18 +47,18 @@ class WishListController extends Controller
             'removedWishLists' => 'nullable|array',
         ]);
 
-        if($request->removedWishLists){
+        if ($request->removedWishLists) {
             foreach ($request->removedWishLists as $wishListId) {
                 WishList::find($wishListId)->delete();
             }
         }
 
-        $wishListObj=new WishList();
+        $wishListObj = new WishList();
 
 
         foreach ($request->wishLists as $wishList) {
 
-            $age=$wishListObj->calculateAge($wishList['dob']);
+            $age = $wishListObj->calculateAge($wishList['dob']);
 
 
             if (isset($wishList['id'])) {
@@ -70,9 +70,10 @@ class WishListController extends Controller
                         'date_of_birth' => $wishList['dob'],
                         'wish_list_link' => $wishList['wishListLink'],
                         'about' => $wishList['about'],
-                        'image_path' => isset($wishList['image']) ? $wishList['image']->store('childrens'): null,
-                        'birth_certificate_path' => isset($wishList['birth_certificate']) ? $wishList['birth_certificate']->store('birth_certificates'): null,
+                        'image_path' => isset($wishList['image']) ? $wishList['image']->store('childrens') : null,
+                        'birth_certificate_path' => isset($wishList['birth_certificate']) ? $wishList['birth_certificate']->store('birth_certificates') : null,
                         'age' => $age,
+                        'gender' => $wishList['gender']
                     ]);
                 } else {
                     $wishListDb->update([
@@ -81,6 +82,7 @@ class WishListController extends Controller
                         'wish_list_link' => $wishList['wishListLink'],
                         'about' => $wishList['about'],
                         'age' => $age,
+                        'gender' => $wishList['gender']
                     ]);
 
                     if (isset($wishList['image'])) {
@@ -102,9 +104,10 @@ class WishListController extends Controller
                     'date_of_birth' => $wishList['dob'],
                     'wish_list_link' => $wishList['wishListLink'],
                     'about' => $wishList['about'],
-                    'image_path' => isset($wishList['image']) ? $wishList['image']->store('childrens'): null,
-                    'birth_certificate_path' => isset($wishList['birth_certificate']) ? $wishList['birth_certificate']->store('birth_certificates'): null,
+                    'image_path' => isset($wishList['image']) ? $wishList['image']->store('childrens') : null,
+                    'birth_certificate_path' => isset($wishList['birth_certificate']) ? $wishList['birth_certificate']->store('birth_certificates') : null,
                     'age' => $age,
+                    'gender' => $wishList['gender']
                 ]);
             }
         }
@@ -174,6 +177,7 @@ class WishListController extends Controller
                 'about' => $wishList->about,
                 'image_url' => $wishList->image_url,
                 'birth_certificate_url' => $wishList->birth_certificate_url,
+                'gender' => ucfirst($wishList->gender),
             ];
         });
 

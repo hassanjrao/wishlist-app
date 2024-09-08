@@ -44,9 +44,9 @@ class UserRegisterController extends Controller
             'password' => 'required|min:6',
             'income' => 'required|numeric',
             'state' => 'required|exists:states,id',
-            'income_certificate' => 'required|file|max:10240',
+            'income_certificate' => 'nullable|file|max:10240',
         ], [
-            'income_certificate.required' => 'The income certificate is required.',
+            'income_certificate.nullable' => 'The income certificate is required.',
             'income_certificate.file' => 'The income certificate must be a file.',
             'income_certificate.max' => 'The income certificate should not be greater than 10 MB.',
         ]);
@@ -61,10 +61,12 @@ class UserRegisterController extends Controller
             'state_id' => $request->state,
         ]);
 
-        UserIncomeCertificate::create([
-            'user_id' => $user->id,
-            'path' => $request->file('income_certificate')->store('income_certificates'),
-        ]);
+        if ($request->income_certificate) {
+            UserIncomeCertificate::create([
+                'user_id' => $user->id,
+                'path' =>  $request->file('income_certificate')->store('income_certificates'),
+            ]);
+        }
 
         $user->assignRole('user');
 
@@ -87,28 +89,30 @@ class UserRegisterController extends Controller
             // 'wishLists.*.birth_certificate' => 'required',
             'wishLists.*.wishListLink' => 'required',
             'wishLists.*.about' => 'required',
+            'wishLists.*.gender' => 'required',
 
         ]);
 
         foreach ($request->wishLists as $wishList) {
 
-            $wishListObj=new WishList();
+            $wishListObj = new WishList();
 
-            $age=$wishListObj->calculateAge($wishList['dob']);
+            $age = $wishListObj->calculateAge($wishList['dob']);
 
             WishList::create([
-                'user_id'=>$request->user_id,
-                'name'=>$wishList['name'],
-                'date_of_birth'=>$wishList['dob'],
-                'wish_list_link'=>$wishList['wishListLink'],
-                'about'=>$wishList['about'],
-                'image_path'=>isset($wishList['image']) ?$wishList['image']->store('childrens') : null,
+                'user_id' => $request->user_id,
+                'name' => $wishList['name'],
+                'date_of_birth' => $wishList['dob'],
+                'wish_list_link' => $wishList['wishListLink'],
+                'about' => $wishList['about'],
+                'image_path' => isset($wishList['image']) ? $wishList['image']->store('childrens') : null,
                 // 'birth_certificate_path'=>$wishList['birth_certificate']->store('birth_certificates'),
-                'age'=>$age,
+                'age' => $age,
+                'gender' => strtolower($wishList['gender'])
             ]);
         }
 
-        $user=User::find($request->user_id);
+        $user = User::find($request->user_id);
 
         // make the user login
 
@@ -120,7 +124,6 @@ class UserRegisterController extends Controller
                 'user' => $user,
             ]
         ]);
-
     }
 
     /**

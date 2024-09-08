@@ -29,12 +29,14 @@
 
 @php
     $states=\App\Models\State::all();
+    $genders=json_encode(\App\Models\WishList::genders());
+
 @endphp
     <div class="hero-static bg-body-extra-light py-5">
 
         <div class="p-4 w-100 flex-grow-1 d-flex align-items-center">
             <div class="w-100">
-                <register :states='{{ $states }}' />
+                <register :states='{{ $states }}' :genders='{{ $genders }}' />
             </div>
         </div>
 

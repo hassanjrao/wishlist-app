@@ -31,4 +31,11 @@ class WishList extends Model
     public function calculateAge($date_of_birth){
         return $date_of_birth ? now()->diffInYears($date_of_birth) : null;
     }
+
+    public static function genders(){
+        return [
+            'male'=>'Male',
+            'female'=>'Female',
+        ];
+    }
 }
