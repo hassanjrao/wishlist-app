@@ -2147,15 +2147,24 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       var valid = true;
       this.errorMessage = null;
       console.log(this.wishLists);
+      var errorMsg = "";
       this.wishLists.forEach(function (wishList) {
         if (!wishList.name || !wishList.dob ||
         //   (!wishList.birth_certificate_url && !wishList.birth_certificate) ||
         !wishList.wishListLink || !wishList.about) {
+          errorMsg = "Fields with * are required";
           valid = false;
+        }
+        if (wishList.wishListLink) {
+          // only amazon.com domain allowed in submited url area
+          if (!wishList.wishListLink.includes("amazon.com")) {
+            errorMsg = "Only amazon.com domain allowed in WishList Link";
+            valid = false;
+          }
         }
       });
       if (!valid) {
-        this.errorMessage = "Fields with * are required";
+        this.errorMessage = errorMsg;
         return false;
       }
       return true;

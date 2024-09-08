@@ -257,7 +257,6 @@
                       </div>
                     </div>
 
-
                     <div class="row mb-4">
                       <div class="col-lg-12">
                         <label for="about" class="form-label">About*</label>
@@ -418,6 +417,8 @@ export default {
 
       console.log(this.wishLists);
 
+      let errorMsg = "";
+
       this.wishLists.forEach((wishList) => {
         if (
           !wishList.name ||
@@ -426,12 +427,21 @@ export default {
           !wishList.wishListLink ||
           !wishList.about
         ) {
+          errorMsg = "Fields with * are required";
           valid = false;
+        }
+
+        if (wishList.wishListLink) {
+          // only amazon.com domain allowed in submited url area
+          if (!wishList.wishListLink.includes("amazon.com")) {
+            errorMsg = "Only amazon.com domain allowed in WishList Link";
+            valid = false;
+          }
         }
       });
 
       if (!valid) {
-        this.errorMessage = "Fields with * are required";
+        this.errorMessage = errorMsg;
 
         return false;
       }

@@ -4,8 +4,9 @@
 
 @section('content')
 
+
     <!-- Page Content -->
-    <div class="hero-static d-flex align-items-center ">
+    <div class="hero-static d-flex align-items-center bg-body-extra-light">
         <div class="content">
             <div class="row justify-content-center push">
                 <div class="col-md-8 col-lg-8 col-xl-6">
