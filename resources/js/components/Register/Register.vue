@@ -210,7 +210,7 @@
                     </div>
 
                     <div class="row mb-4">
-                      <div class="col-lg-6">
+                      <!-- <div class="col-lg-6">
                         <label for="dob" class="form-label">Birth Certificate*</label>
                         <input
                           required
@@ -223,7 +223,7 @@
                         <span class="text-danger" role="alert">
                           <strong>{{ validationErrors.dob }}</strong>
                         </span>
-                      </div>
+                      </div> -->
                       <div class="col-lg-6">
                         <label for="image" class="form-label">Image</label>
                         <input
@@ -240,10 +240,7 @@
                           <strong>{{ validationErrors.image }}</strong>
                         </span>
                       </div>
-                    </div>
-
-                    <div class="row mb-4">
-                      <div class="col-lg-12">
+                      <div class="col-lg-6">
                         <label for="url" class="form-label">WishList Link*</label>
                         <input
                           required
@@ -259,6 +256,7 @@
                         </span>
                       </div>
                     </div>
+
 
                     <div class="row mb-4">
                       <div class="col-lg-12">
@@ -376,7 +374,7 @@ export default {
           name: "",
           image: "",
           dob: "",
-          birth_certificate: "",
+          //   birth_certificate: "",
           wishListLink: "",
           about: "",
         },
@@ -424,7 +422,7 @@ export default {
         if (
           !wishList.name ||
           !wishList.dob ||
-          (!wishList.birth_certificate_url && !wishList.birth_certificate) ||
+          //   (!wishList.birth_certificate_url && !wishList.birth_certificate) ||
           !wishList.wishListLink ||
           !wishList.about
         ) {
@@ -455,7 +453,7 @@ export default {
         name: "",
         image: "",
         dob: "",
-        birth_certificate: "",
+        // birth_certificate: "",
         wishListLink: "",
         about: "",
       });
@@ -605,12 +603,12 @@ export default {
           formData.append(`wishLists[${index}][image]`, wishList.image);
         }
 
-        if (wishList.birth_certificate) {
-          formData.append(
-            `wishLists[${index}][birth_certificate]`,
-            wishList.birth_certificate
-          );
-        }
+        // if (wishList.birth_certificate) {
+        //   formData.append(
+        //     `wishLists[${index}][birth_certificate]`,
+        //     wishList.birth_certificate
+        //   );
+        // }
       });
 
       axios

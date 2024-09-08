@@ -84,7 +84,7 @@ class UserRegisterController extends Controller
             'wishLists.*.name' => 'required',
             'wishLists.*.image' => 'nullable',
             'wishLists.*.dob' => 'required',
-            'wishLists.*.birth_certificate' => 'required',
+            // 'wishLists.*.birth_certificate' => 'required',
             'wishLists.*.wishListLink' => 'required',
             'wishLists.*.about' => 'required',
 
@@ -103,7 +103,7 @@ class UserRegisterController extends Controller
                 'wish_list_link'=>$wishList['wishListLink'],
                 'about'=>$wishList['about'],
                 'image_path'=>isset($wishList['image']) ?$wishList['image']->store('childrens') : null,
-                'birth_certificate_path'=>$wishList['birth_certificate']->store('birth_certificates'),
+                // 'birth_certificate_path'=>$wishList['birth_certificate']->store('birth_certificates'),
                 'age'=>$age,
             ]);
         }

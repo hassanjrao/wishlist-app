@@ -51,7 +51,7 @@
           <div class="block-content">
             <div class="row mb-4">
               <div class="col-lg-6">
-                <label for="name" class="form-label">Child Name *</label>
+                <label for="name" class="form-label">Name *</label>
                 <input
                   required
                   type="text"
@@ -81,7 +81,7 @@
             </div>
 
             <div class="row mb-4">
-              <div class="col-lg-6">
+              <!-- <div class="col-lg-6">
                 <label for="dob" class="form-label">
                   <a
                     :href="wishList.birth_certificate_url"
@@ -99,22 +99,19 @@
                   class="form-control form-control-lg"
                   id="birth_certificate"
                   placeholder="Birth Certificate*"
-                  @change="wishList.birth_certificate = $event.target.files[0]"
+                  <!-- @change="wishList.birth_certificate = $event.target.files[0]"
                 />
                 <span class="text-danger" role="alert">
                   <strong>{{ validationErrors.dob }}</strong>
                 </span>
-              </div>
+              </div> -->
               <div class="col-lg-6">
                 <label for="image" class="form-label"></label>
-                <a
-                    :href="wishList.image_url"
-                    v-if="wishList.image_url"
-                    target="_blank"
-                    >Image</a
-                  >
+                <a :href="wishList.image_url" v-if="wishList.image_url" target="_blank"
+                  >Image</a
+                >
 
-                  <span v-else>Image</span>
+                <span v-else>Image</span>
                 <input
                   required
                   type="file"
@@ -129,10 +126,7 @@
                   <strong>{{ validationErrors.image }}</strong>
                 </span>
               </div>
-            </div>
-
-            <div class="row mb-4">
-              <div class="col-lg-12">
+              <div class="col-lg-6">
                 <label for="url" class="form-label">WishList Link*</label>
                 <input
                   required
@@ -201,8 +195,8 @@ export default {
           image: "",
           image_url: "",
           dob: "",
-          birth_certificate: "",
-          birth_certificate_url: "",
+          //   birth_certificate: "",
+          //   birth_certificate_url: "",
           wishListLink: "",
           about: "",
         },
@@ -221,8 +215,6 @@ export default {
     },
 
     addWishList() {
-
-
       if (!this.wishListValidation()) {
         return;
       }
@@ -235,35 +227,54 @@ export default {
         name: "",
         image: "",
         dob: "",
-        birth_certificate: "",
+        // birth_certificate: "",
         wishListLink: "",
         about: "",
       });
     },
 
-
     wishListValidation() {
       let valid = true;
 
       this.errorMessage = null;
+      this.validationErrors = {
+        name: "",
+        dob: "",
+        image: "",
+        wishListLink: "",
+        about: "",
+      };
 
       console.log(this.wishLists);
+
+      var index = 0;
+
+      var errorMsg = "";
 
       this.wishLists.forEach((wishList) => {
         if (
           !wishList.name ||
           !wishList.dob ||
-          (!wishList.birth_certificate_url && !wishList.birth_certificate) ||
+          //   (!wishList.birth_certificate_url && !wishList.birth_certificate) ||
           !wishList.wishListLink ||
           !wishList.about
         ) {
+          errorMsg = "Fields with * are required";
           valid = false;
         }
+
+        if (wishList.wishListLink) {
+          // only amazon.com domain allowed in submited url area
+          if (!wishList.wishListLink.includes("amazon.com")) {
+            errorMsg = "Only amazon.com domain allowed in WishList Link";
+            valid = false;
+          }
+        }
+        index++;
       });
 
       if (!valid) {
-        this.errorMessage = "Fields with * are required";
-
+        this.errorMessage = errorMsg;
         return false;
       }
 
@@ -296,12 +307,12 @@ export default {
           formData.append(`wishLists[${index}][image]`, wishList.image);
         }
 
-        if (wishList.birth_certificate) {
-          formData.append(
-            `wishLists[${index}][birth_certificate]`,
-            wishList.birth_certificate
-          );
-        }
+        // if (wishList.birth_certificate) {
+        //   formData.append(
+        //     `wishLists[${index}][birth_certificate]`,
+        //     wishList.birth_certificate
+        //   );
+        // }
       });
 
       this.removedWishLists.forEach((id, index) => {
