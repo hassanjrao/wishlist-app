@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\AdminMailController;
 use App\Http\Controllers\AdminProfileController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AdminWishListController;
@@ -58,6 +59,8 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('users', AdminUserController::class);
 
         Route::resource("profile", AdminProfileController::class)->only(["index", "update"]);
+
+        Route::resource('emails',AdminMailController::class);
 
 
     });

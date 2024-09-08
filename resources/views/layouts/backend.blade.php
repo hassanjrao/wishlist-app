@@ -181,6 +181,14 @@
                         </li>
 
                         <li class="nav-main-item">
+                            <a class="nav-main-link{{ request()->is('admin/emails*') ? ' active' : '' }}"
+                                href="{{ route('admin.emails.index') }}">
+                                <i class="nav-main-link-icon si si-cursor"></i>
+                                <span class="nav-main-link-name">Emails</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-main-item">
                             <a class="nav-main-link{{ request()->is('admin/wishlists') ? ' active' : '' }}"
                                 href="{{ route('admin.wishlists.index') }}">
                                 <i class="nav-main-link-icon si si-cursor"></i>
