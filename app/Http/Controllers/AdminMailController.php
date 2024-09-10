@@ -43,7 +43,7 @@ class AdminMailController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'users'=>'required|array',
+            'users'=>'required|array|max:value',
             'users.*'=>'required|exists:users,id',
             'subject'=>'required|string',
             'body'=>'required|string',
@@ -61,7 +61,7 @@ class AdminMailController extends Controller
 
         foreach ($users as $user){
             Mail::to($user->email)
-            ->queue(new AdminEmailMail($email));
+            ->send(new AdminEmailMail($email));
         }
 
         return redirect()->route('admin.emails.index')->with('success','Email(s) will be sent in background in a few minutes');

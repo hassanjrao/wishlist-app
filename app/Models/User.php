@@ -25,6 +25,8 @@ class User extends Authenticatable
         'password',
         'income',
         'is_approved',
+        'is_verified_low_income',
+        'has_tax_return'
     ];
 
     /**

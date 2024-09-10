@@ -132,7 +132,14 @@
                         <div class="dropdown d-inline-block ms-2">
                             <button type="button" class="btn btn-lg btn-alt-secondary" id="page-header-user-dropdown"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-fw fa-user"></i>
+                                {{-- <i class="fa fa-fw fa-user"></i> --}}
+                                {{-- add verified user icon --}}
+                                @if (auth()->user()->is_approved && auth()->user()->is_verified_low_income)
+                                    <i class="fa fa-fw fa-user-check text-success"></i>
+                                    @else
+                                    <i class="fa fa-fw fa-user"></i>
+                                @endif
+
                                 <span class="d-none d-sm-inline-block ms-1">{{ auth()->user()->name }}</span>
                                 <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block"></i>
                             </button>

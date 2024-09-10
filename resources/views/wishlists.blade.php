@@ -16,7 +16,7 @@
                 <div class="row align-items-center">
 
 
-                    <div class="col-md-2 col-xl-2 mb-5">
+                    <div class="col-md-2 col-xl-2 mb-2">
                         <div class="form-group">
                             <label for="month">Filter By Month</label>
                             <select id="monthSelect" name="month" class="form-select">
@@ -37,13 +37,14 @@
                         </div>
                     </div>
 
-                    <div class="col-md-2 col-xl-2 mb-5">
+                    <div class="col-md-2 col-xl-2 mb-2">
                         <div class="form-group">
                             <label for="gender">Filter By Gender</label>
                             <select id="gender" name="gender" class="form-select">
                                 <option {{ $gender == 'all' ? 'selected' : '' }} value="all">All</option>
-                                @foreach ($genders as $key=>$value)
-                                    <option {{ $gender ==$key ? 'selected' : '' }} value="{{ $key }}">{{ $value }}</option>
+                                @foreach ($genders as $key => $value)
+                                    <option {{ $gender == $key ? 'selected' : '' }} value="{{ $key }}">
+                                        {{ $value }}</option>
                                 @endforeach
 
                             </select>
@@ -52,7 +53,7 @@
 
                     </div>
 
-                    <div class="col-md-2 col-xl-2 mb-5">
+                    <div class="col-md-2 col-xl-2 mb-2">
                         <div class="form-group">
                             <label for="dob">Filter By Age</label>
                             <input type="number" class="form-control" id="age" name="age" placeholder="Age"
@@ -60,7 +61,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-2 col-xl-2 mb-5">
+                    <div class="col-md-2 col-xl-2 mb-2">
                         <div class="form-group">
                             <label for="state">Filter By State</label>
                             <select required class="form-select" id="state" name="state">
@@ -73,7 +74,20 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3 col-xl-3 mb-5 mt-4 d-flex">
+                    <div class="col-md-2 col-xl-2 mb-2">
+
+                        <label class="form-check-label" for="verfiedCheck">Verified Low Income</label>
+
+                        <div class="form-check form-switch mt-2">
+
+                            <input class="form-check-input" type="checkbox" id="verfiedCheck"
+                                {{ request()->verfied_check ? 'checked' : '' }}
+                                name="verfied_check">
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-2 col-xl-2 mb-2 mt-4 d-flex">
                         {{-- filter button --}}
                         <div>
                             <label for=""></label>
@@ -82,14 +96,17 @@
                         {{-- clear filter --}}
                         <div>
                             <label for=""></label>
-                            <a href="{{ route('wishlists') }}" class="btn btn-danger">Clear Filters</a>
+                            <a href="{{ route('wishlists') }}" class="btn btn-danger">Clear</a>
                         </div>
                     </div>
+
                 </div>
+
+
 
             </form>
 
-            <div class="row">
+            <div class="row mt-5">
 
                 @foreach ($wishLists as $wishList)
                     <div class="col-sm-6 col-xs-6 col-md-3 col-xl-3 mb-5">

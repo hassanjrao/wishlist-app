@@ -107,13 +107,14 @@
               </span>
             </div>
             <div class="col-lg-6">
-              <label for="password" class="form-label">Tax Return Certificate (optional)</label>
+              <label for="password" class="form-label">Tax Return Certificate (image - optional)</label>
               <input
                 required
                 type="file"
                 class="form-control form-control-lg"
                 id="income_certificate"
                 placeholder="income_certificate"
+                accept="image/*"
                 @change="user.income_certificate = $event.target.files[0]"
               />
               <span class="text-danger" role="alert">

@@ -59,6 +59,7 @@ class UserRegisterController extends Controller
             'password' => bcrypt($request->password),
             'income' => $request->income,
             'state_id' => $request->state,
+
         ]);
 
         if ($request->income_certificate) {
@@ -66,6 +67,13 @@ class UserRegisterController extends Controller
                 'user_id' => $user->id,
                 'path' =>  $request->file('income_certificate')->store('income_certificates'),
             ]);
+
+            $user->has_tax_return = 1;
+            $user->save();
+        }
+        else{
+            $user->is_approved=1;
+            $user->save();
         }
 
         $user->assignRole('user');
@@ -114,12 +122,18 @@ class UserRegisterController extends Controller
 
         $user = User::find($request->user_id);
 
+        $message='WishList added successfully.';
+
+        if($user->latestIncomeCertificate){
+            $message.=' We will review and approve it soon. \n\n You can check the status in your profile.';
+        }
+
         // make the user login
 
         auth()->login($user);
 
         return response()->json([
-            'message' => "WishList added successfully. We will review and approve it soon. \n\n You can check the status in your profile.",
+            'message' => $message,
             'data' => [
                 'user' => $user,
             ]

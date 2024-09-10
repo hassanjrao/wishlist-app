@@ -53,14 +53,18 @@ class HomeController extends Controller
             'month' => 'nullable',
             'age' => 'nullable|numeric',
             'state' => 'nullable',
-            'gender'=>'nullable'
+            'gender'=>'nullable',
+            'verfied_check'=>'nullable'
         ]);
+
 
         // if month is null, then it will return the current month
         $month = $request->month ?? 'all';
         $age = $request->age;
         $state = $request->state;
         $gender=$request->gender ?? 'all';
+        $verfied_check=$request->verfied_check && $request->verfied_check=='on' ? true : false;
+
 
         $wishLists = WishList::when($month && $month!='all', function ($query) use ($month) {
             return $query->whereMonth('date_of_birth', $month);
@@ -70,6 +74,11 @@ class HomeController extends Controller
         ->when($gender && $gender!='all', function ($query) use ($gender) {
 
             return $query->where('gender', $gender);
+        })
+        ->when($verfied_check, function ($query) use ($verfied_check) {
+            return $query->whereHas('user', function ($query) use ($verfied_check) {
+                $query->where('is_verified_low_income', 1);
+            });
         })
         ->whereHas('user', function ($query) use ($state) {
             // $query->where('is_approved', 1)
@@ -89,7 +98,7 @@ class HomeController extends Controller
         $states=State::all();
         $genders=WishList::genders();
 
-        return view('wishlists', compact('wishLists', 'month', 'age','states','gender','genders'));
+        return view('wishlists', compact('wishLists', 'month', 'age','states','gender','genders','state','verfied_check'));
     }
 
     public function privacyPolicy()
