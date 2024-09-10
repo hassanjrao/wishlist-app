@@ -102,6 +102,11 @@ class UserProfileController extends Controller
                 'user_id' => $user->id,
                 'path' => $request->file('tax_return_certificate')->store('income_certificates'),
             ]);
+
+            $user->update([
+                'has_tax_return' => 1,
+                'is_verified_low_income' => 0,
+            ]);
         }
 
         return redirect()->route('user.profile.index')->withToastSuccess('Profile updated successfully.');
