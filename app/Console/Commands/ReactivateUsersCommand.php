@@ -48,12 +48,14 @@ class ReactivateUsersCommand extends Command
         // })
         // ->get();
 
+        // get those users who are not approved and were created on this date (make everyone reactive every anniversary year and send out email to tell them# )
 
-        // $userRegisterController = new UserRegisterController();
-
-        // $userRegisterController->mailUser();
-
-        $users=User::where('id',2)->get();
+        $users = User::where('is_approved', 0)
+            ->whereHas('roles', function ($q) {
+                $q->where('name', 'user');
+            })
+            ->whereDate('created_at', now())
+            ->get();
 
         foreach ($users as $user) {
             $user->is_approved = 1;
@@ -61,7 +63,7 @@ class ReactivateUsersCommand extends Command
 
             $user->notify(new ReactiveUserNotification($user));
 
-            Log::info('ReactivateUsersCommand',[
+            Log::info('ReactivateUsersCommand', [
                 'user_id' => $user->id,
                 'email' => $user->email
             ]);
