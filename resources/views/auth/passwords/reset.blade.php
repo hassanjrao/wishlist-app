@@ -1,6 +1,6 @@
 @extends('layouts.front')
 
-@section('page-title', 'Login')
+@section('page-title', 'Reset Password')
 
 @section('content')
 
