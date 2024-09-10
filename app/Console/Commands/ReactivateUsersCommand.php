@@ -49,9 +49,9 @@ class ReactivateUsersCommand extends Command
         // ->get();
 
 
-        $userRegisterController = new UserRegisterController();
+        // $userRegisterController = new UserRegisterController();
 
-        $userRegisterController->mailUser();
+        // $userRegisterController->mailUser();
 
         $users=User::where('id',2)->get();
 
