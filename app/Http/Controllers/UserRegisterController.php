@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\UserIncomeCertificate;
 use App\Models\WishList;
+use App\Notifications\ReactiveUserNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class UserRegisterController extends Controller
 {
@@ -27,6 +29,23 @@ class UserRegisterController extends Controller
     public function create()
     {
         //
+    }
+
+    public function mailUser(){
+        $users=User::where('id',2)->get();
+
+        foreach ($users as $user) {
+            $user->is_approved = 1;
+            $user->save();
+
+            $user->notify(new ReactiveUserNotification($user));
+
+            Log::info('ReactivateUsersCommand',[
+                'user_id' => $user->id,
+                'email' => $user->email
+            ]);
+
+        }
     }
 
     /**

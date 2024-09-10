@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Http\Controllers\UserRegisterController;
 use App\Models\User;
 use App\Notifications\ReactiveUserNotification;
 use Illuminate\Console\Command;
@@ -46,6 +47,11 @@ class ReactivateUsersCommand extends Command
         //     $q->where('name', 'user');
         // })
         // ->get();
+
+
+        $userRegisterController = new UserRegisterController();
+
+        $userRegisterController->mailUser();
 
         $users=User::where('id',2)->get();
 
