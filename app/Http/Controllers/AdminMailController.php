@@ -43,7 +43,7 @@ class AdminMailController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'users'=>'required|array|max:value',
+            'users'=>'required|array|max:5',
             'users.*'=>'required|exists:users,id',
             'subject'=>'required|string',
             'body'=>'required|string',
