@@ -14,15 +14,15 @@ class AdminUserController extends Controller
      */
     public function index()
     {
-        $users=User::latest()
-        ->whereHas('roles',function($q){
-            $q->where('name','user');
-        })
-        ->with(['wishLists','incomeCertificates'])
-        ->get();
+        $users = User::latest()
+            ->whereHas('roles', function ($q) {
+                $q->where('name', 'user');
+            })
+            ->with(['wishLists', 'incomeCertificates'])
+            ->get();
 
 
-        return view('admin.users.index',compact('users'));
+        return view('admin.users.index', compact('users'));
     }
 
     /**
@@ -88,7 +88,7 @@ class AdminUserController extends Controller
      */
     public function destroy($id)
     {
-        $user=User::findorfail($id);
+        $user = User::findorfail($id);
 
 
         // hard delete
@@ -100,25 +100,50 @@ class AdminUserController extends Controller
     }
 
 
-    public function approve($id)
+    public function approve(Request $request, $id)
     {
-        $user=User::findorfail($id);
+        $request->validate([
+            'is_approved' => 'required|boolean'
+        ]);
+        $user = User::findorfail($id);
         $user->update([
-            'is_approved'=>1
+            'is_approved' => $request->is_approved
         ]);
 
-        $user->incomeCertificates()->forceDelete();
+        $message = 'User disapproved successfully';
+
+        if ($user->is_approved) {
+            $user->incomeCertificates()->forceDelete();
+
+            $message= 'User approved successfully';
+        }
 
 
-        return redirect()->back()->withToastSuccess('User approved successfully');
+        return redirect()->back()->withToastSuccess($message);
+    }
+
+    public function verifyLowIncome(Request $request,$id)
+    {
+        $request->validate([
+            'is_verified_low_income' => 'required|boolean'
+        ]);
+
+        $user = User::findorfail($id);
+        $user->update([
+            'is_verified_low_income' => $request->is_verified_low_income
+        ]);
+
+        $message=$user->is_verified_low_income ? 'Verified successfully' : 'Unverified successfully';
+
+        return redirect()->back()->withToastSuccess($message);
     }
 
     public function wishLists($id)
     {
-        $user=User::findorfail($id);
+        $user = User::findorfail($id);
 
-        $wishLists=$user->wishLists;
+        $wishLists = $user->wishLists;
 
-        return view('admin.wishLists.index',compact('wishLists','user'));
+        return view('admin.wishLists.index', compact('wishLists', 'user'));
     }
 }

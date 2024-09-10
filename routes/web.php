@@ -56,6 +56,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('users/{user}/wishlists', [AdminUserController::class, 'wishLists'])->name('users.wishlists');
         Route::put('users/{user}/approve', [AdminUserController::class, 'approve'])->name('users.approve');
+        Route::put('users/{user}/verifyLowIncome', [AdminUserController::class, 'verifyLowIncome'])->name('users.verifyLowIncome');
         Route::resource('users', AdminUserController::class);
 
         Route::resource("profile", AdminProfileController::class)->only(["index", "update"]);

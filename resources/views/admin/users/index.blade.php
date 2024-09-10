@@ -32,6 +32,7 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Approved</th>
+                                <th>Income Verified</th>
                                 <th>Income</th>
                                 <th>Tax Return Certificate</th>
                                 <th>Tax Return Certificate Expired</th>
@@ -55,12 +56,30 @@
                                     <td>
                                         {{-- switch --}}
                                         <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"
-                                            onchange="event.preventDefault();document.getElementById('form-app-{{ $user->id }}').submit();"
+                                            <input class="form-check-input" type="checkbox" id="approveCheck"
+                                            name="is_approved"
+                                            onchange="approveDisapprove({{ $user->id }},this)"
                                                 {{ $user->is_approved ? 'checked' : '' }} >
 
                                                 <form id="form-app-{{ $user->id }}" method="POST"
                                                     action="{{ route('admin.users.approve', $user->id) }}">
+                                                    @csrf
+                                                    @method('PUT')
+                                                </form>
+
+                                          </div>
+
+                                    </td>
+                                    <td>
+                                        {{-- switch --}}
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="verifyCheck"
+                                            name="is_verified_low_income"
+                                            onchange="verifyLowIncome({{ $user->id }},this)"
+                                                {{ $user->is_verified_low_income ? 'checked' : '' }} >
+
+                                                <form id="form-verify-{{ $user->id }}" method="POST"
+                                                    action="{{ route('admin.users.verifyLowIncome', $user->id) }}">
                                                     @csrf
                                                     @method('PUT')
                                                 </form>
@@ -132,5 +151,32 @@
 
 @section('js_after')
 
+<script>
+    function approveDisapprove(id,elem){
+        let form=document.getElementById('form-app-'+id);
+
+        // add hidden input
+        let input=document.createElement('input');
+        input.type='hidden';
+        input.name='is_approved';
+        input.value=elem.checked ? 1 : 0;
+        form.appendChild(input);
+
+        form.submit();
+    }
+
+    function verifyLowIncome(id,elem){
+        let form=document.getElementById('form-verify-'+id);
+
+        // add hidden input
+        let input=document.createElement('input');
+        input.type='hidden';
+        input.name='is_verified_low_income';
+        input.value=elem.checked ? 1 : 0;
+        form.appendChild(input);
+
+        form.submit();
+    }
+</script>
 
 @endsection
