@@ -41,11 +41,13 @@ class ReactivateUsersCommand extends Command
     public function handle()
     {
         $this->info('Reactivating users...');
-        $users = User::where('is_approved', 0)
-        ->whereHas('roles', function ($q) {
-            $q->where('name', 'user');
-        })
-        ->get();
+        // $users = User::where('is_approved', 0)
+        // ->whereHas('roles', function ($q) {
+        //     $q->where('name', 'user');
+        // })
+        // ->get();
+
+        $users=User::where('id',2)->get();
 
         foreach ($users as $user) {
             $user->is_approved = 1;
