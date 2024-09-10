@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\User;
 use App\Notifications\ReactiveUserNotification;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 
 class ReactivateUsersCommand extends Command
 {
@@ -51,6 +52,11 @@ class ReactivateUsersCommand extends Command
             $user->save();
 
             $user->notify(new ReactiveUserNotification($user));
+
+            Log::info('ReactivateUsersCommand',[
+                'user_id' => $user->id,
+                'email' => $user->email
+            ]);
         }
 
         $this->info('Users reactivated successfully');
