@@ -57,6 +57,8 @@ class ReactivateUsersCommand extends Command
                 'user_id' => $user->id,
                 'email' => $user->email
             ]);
+
+            $this->info('User reactivated: ' . $user->email);
         }
 
         $this->info('Users reactivated successfully');
