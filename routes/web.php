@@ -10,6 +10,8 @@ use App\Http\Controllers\UserPanelController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\UserRegisterController;
 use App\Http\Controllers\WishListController;
+use App\Models\User;
+use App\Notifications\ReactiveUserNotification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -67,3 +69,11 @@ Route::middleware(['auth'])->group(function () {
     });
 
 });
+
+
+Route::get('test', function () {
+
+    $user=User::find(2);
+    $user->notify(new ReactiveUserNotification($user));
+});
+
