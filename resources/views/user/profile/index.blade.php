@@ -11,14 +11,17 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    @if (!auth()->user()->is_approved)
+                    @if (auth()->user()->has_tax_return && !auth()->user()->is_verified_low_income)
                         <div class="alert alert-info">
-                            We are reviewing your income and kids information. We will notify you once your wishlists are
-                            approved.
+                            We are reviewing your income. We will notify you once your it's verified
                         </div>
-                    @else
-                        <div class="alert alert-success">
-                            Your wishlists are approved.
+                    @elseif (auth()->user()->has_tax_return && auth()->user()->is_verified_low_income)
+                        <div class="alert alert-info">
+                            Your income is verified.
+                        </div>
+                    @elseif (!auth()->user()->is_approved)
+                        <div class="alert alert-danger">
+                            Your account has been disabled.
                         </div>
                     @endif
                 </div>
