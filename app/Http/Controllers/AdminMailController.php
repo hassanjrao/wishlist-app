@@ -64,7 +64,7 @@ class AdminMailController extends Controller
             ->send(new AdminEmailMail($email));
         }
 
-        return redirect()->route('admin.emails.index')->with('success','Email(s) will be sent in background in a few minutes');
+        return redirect()->route('admin.emails.index')->with('success','Email(s) will be sent in few minutes');
     }
 
     /**
