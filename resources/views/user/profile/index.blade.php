@@ -13,7 +13,7 @@
                 <div class="col-lg-12">
                     @if (auth()->user()->has_tax_return && !auth()->user()->is_verified_low_income)
                         <div class="alert alert-info">
-                            We are reviewing your income. We will notify you once your it's verified
+                            We are reviewing your income. We will notify you once it's verified
                         </div>
                     @elseif (auth()->user()->has_tax_return && auth()->user()->is_verified_low_income)
                         <div class="alert alert-info">
