@@ -563,6 +563,9 @@ export default {
       this.loading = true;
 
       let formData = new FormData();
+      if(this.user.id!=null){
+        formData.append("id", this.user.id);
+      }
       formData.append("name", this.user.name);
       formData.append("email", this.user.email);
       formData.append("state", this.user.state);
