@@ -109,6 +109,15 @@ class AdminMailController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $email=Email::findOrFail($id);
+
+        // delete users
+        $email->users()->detach();
+
+        // delete email
+        $email->forceDelete();
+
+        return redirect()->route('admin.emails.index')->withToastSuccess('Deleted successfully');
+
     }
 }

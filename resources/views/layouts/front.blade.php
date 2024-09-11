@@ -17,6 +17,12 @@
     <link rel="stylesheet" href="{{  asset('js/plugins/slick-carousel/slick.css')}}">
     <link rel="stylesheet" href="{{  asset('js/plugins/slick-carousel/slick-theme.css')}}">
 
+    {{-- add meta description --}}
+    <meta name="description" content="Birthday Bonanza is a free platform for sharing your amazon wish lists so people can buy gifts for peoples birthdays.">
+    {{-- meta keywords --}}
+    <meta name="keywords" content="Gift,free,charity,toys,birthday, bonanza, birthday bonanza, wishlists,wish lists, amazon, gifts, birthday gifts, birthday presents, birthday bonanza gifts, birthday bonanza presents, birthday bonanza wishlists, birthday bonanza amazon, birthday bonanza birthday, birthday bonanza birthday gifts, birthday bonanza birthday presents, birthday bonanza birthday wishlists, birthday bonanza birthday amazon, birthday bonanza birthday, birthday bonanza birthday gifts, birthday bonanza birthday presents, birthday bonanza birthday wishlists, birthday bonanza birthday amazon">
+    {{-- meta author --}}
+
 
     <!-- Stylesheets -->
     <!-- Fonts and OneUI framework -->

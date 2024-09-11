@@ -56,7 +56,6 @@
                                     </td>
 
                                     <td>{{ $email->created_at }}</td>
-                                    <td>{{ $email->updated_at }}</td>
 
                                     <td>
 
