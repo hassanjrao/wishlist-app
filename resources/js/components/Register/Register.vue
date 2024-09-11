@@ -129,8 +129,7 @@
             <div class="col-lg-12">
               <div>
                 <p class="">
-                  Your income should be in following range; We will verify income levels
-                  based on tax returns and verify kids by birth certificates
+                  Your income should be in following range; You can submit your income to be verified later if you so wish later in profile section but it is not required
                 </p>
                 <div class="d-flex justify-content-between w-100 align-items-end">
                   <ul class="list-inline-with-bullets">
@@ -548,7 +547,7 @@ export default {
         this.validationErrors.name ||
         this.validationErrors.email ||
         this.validationErrors.state ||
-        this.validationErrors.password ||
+        this.validationErrors.password
         //this.validationErrors.income ||
         //this.validationErrors.income_certificate
       ) {
