@@ -99,7 +99,7 @@
                 step="0.01"
                 class="form-control form-control-lg"
                 id="income"
-                placeholder="Income"
+                placeholder="Income (optional)"
                 v-model="user.income"
               />
               <span class="text-danger" role="alert">
@@ -532,9 +532,9 @@ export default {
         this.validationErrors.password = "Password must be at least 6 characters";
       }
 
-      if (!this.user.income) {
-        this.validationErrors.income = "Income is required";
-      }
+      //if (!this.user.income) {
+        //this.validationErrors.income = "Income is required";
+      //}
 
       if (this.user.income && this.user.income < 0) {
         this.validationErrors.income = "Income must be greater than 0";
@@ -549,8 +549,8 @@ export default {
         this.validationErrors.email ||
         this.validationErrors.state ||
         this.validationErrors.password ||
-        this.validationErrors.income ||
-        this.validationErrors.income_certificate
+        //this.validationErrors.income ||
+        //this.validationErrors.income_certificate
       ) {
         return false;
       }
