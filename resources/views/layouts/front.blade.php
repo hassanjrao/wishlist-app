@@ -282,8 +282,7 @@
                         <div class="py-3 text-center">
 
                             <h2 class="h3 fw-medium text-white mb-0">
-                                No child should go without a birthday gift here at <span class="text-capitalize"><strong>birthday bonanza</strong></span> you can browse wish
-                                lists for verified low income children and buy a gift their family is wishing for.
+                                We believe everyone is a child of God deserving of love so everyone is free to join and share their Amazon Wish List. The site owner will buy some gifts and anyone can can browse wish lists without registering. No child should go without a birthday gift here at <strong>Birthday Bonanza</strong> so we also let you search for verified low income children and buy a gift their family is wishing for.
                             </h2>
                         </div>
                     </div>

@@ -151,11 +151,11 @@
                     </div>
                     <div id="faq1_q1" class="collapse" role="tabpanel" aria-labelledby="faq1" data-bs-parent="#faq1">
                         <div class="block-content">
-                            <p>You need to click <a href="{{ route('register') }}">register</a> and upload your tax return
-                                and add a Birth certificate for each child. Image files of type jpg, png are allowed of max
-                                size 10mb are allowed.</p>
+                            <p>
+                                <a href="{{ route('register') }}" target="_blank">Signup</a> and when approved submit your wish list with your information. When you <a href="{{ route('register') }}" target="_blank">register</a> you can choose to upload your tax return to verify your low income. Image files of type jpg, png are allowed of max size 10mb are allowed.
+                            </p>
 
-                            
+
                         </div>
                     </div>
                 </div>
@@ -291,6 +291,34 @@
                         <div class="block-content">
 
                             <p>At the anniversary of your account approval you will have to submit a new tax return</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="block block-rounded block-bordered overflow-hidden mb-1">
+                    <div class="block-header block-header-default" role="tab" id="faq8" data-bs-toggle="collapse" data-bs-parent="#faq8" href="#faq8_q2"
+                    aria-expanded="true" aria-controls="faq8_q2" style="cursor: pointer">
+                        <a>How old must I be to register?</a>
+                    </div>
+                    <div id="faq8_q2" class="collapse" role="tabpanel" aria-labelledby="faq8" data-bs-parent="#faq8">
+                        <div class="block-content">
+
+                            <p>You must be 13 years or older or have your parents register for you to use this site for submiting your wish list</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="block block-rounded block-bordered overflow-hidden mb-1">
+                    <div class="block-header block-header-default" role="tab" id="faq9" data-bs-toggle="collapse" data-bs-parent="#faq9" href="#faq9_q2"
+                    aria-expanded="true" aria-controls="faq9_q2" style="cursor: pointer">
+                        <a>What do you do with my information?</a>
+                    </div>
+                    <div id="faq9_q2" class="collapse" role="tabpanel" aria-labelledby="faq9" data-bs-parent="#faq9">
+                        <div class="block-content">
+
+                            <p>We delete your tax returns after verifying the income if you submitted a return and we never sell your information to anyone</p>
                         </div>
                     </div>
                 </div>
