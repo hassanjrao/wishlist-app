@@ -10,25 +10,26 @@
         <div class="content">
 
             <h1 class='text-center'>How it Works?</h1>
-            <div class="row py-5">
-                <div class="col-6 col-md-4">
+            <div class="row py-5 justify-content-center    ">
+                <div class="col-md-4">
                     <div class="item item-rounded my-4 text-amethyst bg-amethyst-lighter">
-                        <i class="fab fa-fw fa-2x fa-wpforms"></i>
+                        {{-- <i class="fab fa-fw fa-2x fa-wpforms"></i> --}}
+                        <i class="fa fa-fw fa-2x fa-user"></i>
                     </div>
                     <h4 class="mb-2">Enter your Information</h4>
                     {{-- <p class="text-muted">
                         Name, Email, Password
                     </p> --}}
                 </div>
-                <div class="col-6 col-md-4">
+                <div class="col-md-4">
                     <div class="item item-rounded my-4 text-amethyst bg-amethyst-lighter">
                         <i class="fa fa-fw fa-2x fa-certificate"></i>
                     </div>
-                    <h4 class="mb-2">Upload your Tax Return Certificate</h4>
+                    <h4 class="mb-2">Upload your Tax Return (Optional)</h4>
 
                 </div>
 
-                <div class="col-6 col-md-4">
+                <div class="col-md-4">
                     <div class="item item-rounded my-4 text-amethyst bg-amethyst-lighter">
                         <i class="fa fa-solid fa-2x fa-heart"></i>
                     </div>
@@ -153,6 +154,8 @@
                             <p>You need to click <a href="{{ route('register') }}">register</a> and upload your tax return
                                 and add a Birth certificate for each child. Image files of type jpg, png are allowed of max
                                 size 10mb are allowed.</p>
+
+                            
                         </div>
                     </div>
                 </div>
