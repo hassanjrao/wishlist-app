@@ -61,7 +61,7 @@ class UserRegisterController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $request->id,
             'password' => 'required|min:6',
-            'income' => 'required|numeric',
+            'income' => 'nullable|numeric',
             'state' => 'required|exists:states,id',
             'income_certificate' => 'nullable|file|max:10240',
         ], [
